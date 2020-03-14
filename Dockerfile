@@ -1,5 +1,11 @@
-ARG     BASE_IMAGE=$BASE_IMAGE
-FROM    $BASE_IMAGE AS gpm
+ARG     BASE_IMG=$BASE_IMG
+FROM    $BASE_IMG AS base
+
+RUN     apk --update --no-cache upgrade
+
+
+
+FROM    base as build
 
 RUN	apk --update --no-cache add \
 	curl
@@ -14,4 +20,4 @@ FROM	scratch
 
 COPY	files/ /
 
-COPY	--from=gpm /mnt/gpm /bin/gpm
+COPY	--from=build /mnt/gpm /bin/gpm

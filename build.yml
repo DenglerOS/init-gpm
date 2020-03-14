@@ -1,0 +1,4 @@
+image: os-gpm
+org: dengleros
+arches:
+  - amd64
